@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @var \Esca7a\ModuleTask4\Block\Display $block;
+ * create connect fields to /moduletask4/display/index;
+ * here we use *instance of classes @block file
+ */
+
+?>
+
+<html>
+    <body>
+        <style>
+            table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100%;  margin-top: 30px;}
+            td, th {  border: 1px solid #dddddd;  text-align: left;  padding: 8px;  }
+            tr:nth-child(even) { background-color: #dddddd; }
+            .test-field{width:20%}
+        </style>
+            
+        <table>
+            <tr>
+                <th class="test-field">Field 1 from Config :</th>
+                <th class="test-field"><?php echo $block->getTest1();?></th>
+            </tr>
+            <tr>
+                <th class="test-field">Field 2 from Config :</th>
+                <th class="test-field"><?php echo $block->getTest2();?></th>
+            </tr>
+            <tr>
+                <th class="test-field">Field 3 from Config :</th>
+                <th class="test-field"><?php echo $block->getTest3();?></th>
+            </tr>
+        </table>
+    </body>
+</html>
+ 
+
