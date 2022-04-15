@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--Создаем виртуальный хендлер и указываем ему файл, в который будем писать логи-->
+    <virtualType name="ApiHandler" type="Magento\Framework\Logger\Handler\Base"><arguments>
+            <argument name="fileName" xsi:type="string">/var/log/ADMIN_CUSTOMER.log</argument>
+        </arguments>
+    </virtualType>
+    <!--Создаем виртуальный логгер, в который добавляем наш хендлер-->
+    <virtualType name="ApiLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">ADMIN_CUSTOMER</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="object">ApiHandler</item></argument>
+        </arguments>
+    </virtualType>
+    <!--Добавляем в наш плагин только что созданный логгер-->
+    <type name="Esca7a\ModuleCustomLog\Plugin\ViewedAdmin">
+        <arguments>
+            <argument name="logger" xsi:type="object">ApiLogger</argument>
+        </arguments>
+    </type>
+    <!--передаем отслеживание нашему плагину Edit класса-->
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Edit">
+        <plugin name="View_Edit_Logger" type="Esca7a\ModuleCustomLog\Plugin\ViewedAdmin" sortOrder="1" disabled="false" />
+    </type>
+    <!--добавляю логер в тестовых наблюдателей-->
+    <!--добавляем в наблюдателя (adminhtml_customer_prepare_save) логгер-->
+    <type name="Esca7a\ModuleCustomLog\Observer\AdminhtmlCustomerPrepareSave">
+        <arguments>
+            <argument name="logger" xsi:type="object">ApiLogger</argument>
+        </arguments>
+    </type>
+    <!--добавляем в наблюдателя (adminhtml_customer_save_after) логгер-->
+    <type name="Esca7a\ModuleCustomLog\Observer\AdminhtmlCustomerSaveAfter">
+        <arguments>
+            <argument name="logger" xsi:type="object">ApiLogger</argument>
+        </arguments>
+    </type>
+</config>
