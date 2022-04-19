@@ -21,12 +21,12 @@ class AdminhtmlCustomerPrepareSave implements ObserverInterface
         /**
          * @var \Magento\Customer\Model\Data\Customer $customer
          */
-        $adminID = $this->session->getName();
-        $customer = $observer->getData('customer_data_object');
 
+        $customer = $observer->getData('customer_data_object');
         $customerId = $customer->getId();
+
         $this->logger->info(
-            "ADMIN: " . $adminID
+            "ADMIN: " . $this->session->getName()
             . " | SAVED CUSTOMER WITH ID | " . $customerId
         );
     }

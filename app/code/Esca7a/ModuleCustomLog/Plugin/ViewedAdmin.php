@@ -20,20 +20,16 @@ class ViewedAdmin{
     ){
         $this->logger = $logger;
         $this->authSession = $authSession;
-        $this->customerInterface = $customer;
-        $this->customerSessionFromModel = $customerSession;
+        $this->customer = $customer;
+        $this->customerSession = $customerSession;
     }
 
     public function beforeExecute(Edit $subject)
     {
-        $customerResponse = $subject->getResponse()->sendResponse();
         $customerId = $subject->getRequest()->getParam('id');
-        if ($customerId)
-        {
-            $this->logger->info(" | ADMIN : " . $this->authSession->getName()
+        $this->logger->info(" | ADMIN : " . $this->authSession->getName()
                 . " | VIEWED CUSTOMER WITH ID | " . $customerId
-            );
-        } else $this->logger->info("сработало условия если");
+        );
     }
 }
 
