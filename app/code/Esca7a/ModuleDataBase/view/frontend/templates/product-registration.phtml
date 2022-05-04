@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * @var \Esca7a\ModuleDataBase\Block\DisplayForm $block;
+ * create connect fields to /ModuleDataBase/display/index;
+ * here we use *instance of classes @block file
+ */
+
+?>
+
+<html>
+<body>
+<style>
+    input[type="text"] {
+        font-family: inherit; /* 1 */
+        font-size: inherit; /* 1 */
+        line-height: inherit; /* 1 */
+        margin: 0; /* 2 */
+    }
+    .text-field__input:disabled,
+    .text-field__input[readonly] {
+        background-color: #f5f5f5;
+        opacity: 1;
+    }
+</style>
+<div>
+    <form action="Esca7a/ModuleDataBase/Block/DisplayForm.php" method="post">
+        <div>
+            <div>
+                <label><span>Product category</span> (required)</label>
+            </div>
+            <select name="product_category" id="category">
+                <?php foreach ($block->getCategoryList() as $category):?>
+                <option value="<?php echo $category->getId();?>"><?php echo $category->getName(); ?></option>
+                <?php endforeach;?>
+            </select>
+            <script type="text/javascript">
+                require(['jquery'], function($){
+                    $("#category").on('change', function (){
+                        var catID = $(this).val();
+                        alert(catID);
+                    $.ajax({
+                        type:"POST",
+                        url:"<?php echo $block->getUrl('Controller/ProductRegistration/Ajax') ?>",
+                        data:{ajax:'1',cat: catID},
+                        success: function (){
+                            alert('its alert from success:function(var). ID cat: ' + catID);
+                        }
+                    })
+                });
+            </script>
+        </div>
+        <div>
+            <div>
+                <label><span>Model</span> (required)</label>
+            </div>
+            <select name="model" id="model">
+                <?php //$block->getCategoryList();?>
+            </select>
+        </div>
+        <div>
+            <div>
+                <label><span>Serial Number</span> (required)</label>
+            </div>
+            <div>
+                <input placeholder="serial number" type="text">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label><span>E-mail</span> (required)</label>
+            </div>
+            <div>
+                <input type="email" placeholder="4. Текстовый инпут для емейла.">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label><span>Phone</span> (required)</label>
+            </div>
+            <div>
+                <input type="number" placeholder="5. Текстовый инпут для телефона.">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label><span>Message about product</span> (required)</label>
+            </div>
+            <div>
+                <textarea placeholder="6. Текстовая область для текста."></textarea>
+            </div>
+        </div>
+        <div>
+            <button name="submit" type="submit">accept</button>
+        </div>
+    </form>
+</div>
+<div>
+
+</div>
+<div>
+    <?php
+    $ids = [3];
+    $categoryProducts = $block->getProductCollectionByCategories($ids);
+    foreach ($categoryProducts as $product) {
+        echo $product->getName();
+    }
+    ?>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+   <menu>
+      <add
+         id="Esca7a_ModuleDataBase::config"
+         title="Esca7a configuration"
+         translate="title"
+         module="Esca7a_ModuleDataBase"
+         sortOrder="152"
+         parent="Magento_Backend::system"
+         resource="Esca7a_ModuleDataBase::config"
+      />
+      <add
+         id="Esca7a_ModuleDataBase::esca7a_configuration"
+         title="XROM-GROUP"
+         module="Esca7a_ModuleDataBase"
+         sortOrder="99"
+         parent="Esca7a_ModuleDataBase::config"
+         action="adminhtml/system_config/edit/section/ModuleDataBase"
+         resource="Esca7a_ModuleDataBase::helloworld_configuration"
+         />
+   </menu>
+</config>
