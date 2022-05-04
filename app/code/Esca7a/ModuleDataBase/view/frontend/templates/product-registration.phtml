@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @var \Esca7a\ModuleDataBase\Block\DisplayForm $block;
+ * @var DisplayForm $block;
  * create connect fields to /ModuleDataBase/display/index;
  * here we use *instance of classes @block file
  */
+
+use Esca7a\ModuleDataBase\Block\DisplayForm;
 
 ?>
 
@@ -55,7 +57,7 @@
                 <label><span>Model</span> (required)</label>
             </div>
             <select name="model" id="model">
-                <?php //$block->getCategoryList();?>
+                <?php //someone code ?>
             </select>
         </div>
         <div>
@@ -100,7 +102,11 @@
 </div>
 <div>
     <?php
-    $ids = [3];
+    /*  я пробую с помощью метода извлечь все продукты по текущему id категории
+     *  как мы видим ID = 3 успешно извлекает данные.
+     *  К сожалению с ID = 20 метод уже не работает.
+     */
+    $ids = [3, 20];
     $categoryProducts = $block->getProductCollectionByCategories($ids);
     foreach ($categoryProducts as $product) {
         echo $product->getName();
