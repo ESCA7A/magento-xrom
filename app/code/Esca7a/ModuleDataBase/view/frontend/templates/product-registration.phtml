@@ -1,13 +1,9 @@
 <?php
-
 /**
  * @var DisplayForm $block;
  * create connect fields to /ModuleDataBase/display/index;
  * here we use *instance of classes @block file
  */
-
-use Esca7a\ModuleDataBase\Block\DisplayForm;
-
 ?>
 
 <html>
@@ -26,7 +22,7 @@ use Esca7a\ModuleDataBase\Block\DisplayForm;
     }
 </style>
 <div>
-    <form action="Esca7a/ModuleDataBase/Block/DisplayForm.php" method="post">
+    <form action="<?php echo $block->getUrl('moduledatabase/ProductRegistration/Ajax'); ?>" method="post">
         <div>
             <div>
                 <label><span>Product category</span> (required)</label>
@@ -40,16 +36,16 @@ use Esca7a\ModuleDataBase\Block\DisplayForm;
                 require(['jquery'], function($){
                     $("#category").on('change', function (){
                         var catID = $(this).val();
-                        alert(catID);
+                        //alert(catID);
                     $.ajax({
                         type:"POST",
-                        url:"<?php echo $block->getUrl('Controller/ProductRegistration/Ajax') ?>",
-                        data:{ajax:'1',cat: catID},
-                        success: function (){
-                            alert('its alert from success:function(var). ID cat: ' + catID);
+                        url:"<?php echo $block->getUrl('moduledatabase/ProductRegistration/Ajax') ?>",
+                        data:{ajax:'1',category: catID},
+                        success: function (result){
+                            alert('result: ' + result + ' | its alert from success:function(var). ID category: ' + catID);
                         }
                     })
-                });
+                })});
             </script>
         </div>
         <div>
@@ -102,14 +98,10 @@ use Esca7a\ModuleDataBase\Block\DisplayForm;
 </div>
 <div>
     <?php
-    /*  я пробую с помощью метода извлечь все продукты по текущему id категории
-     *  как мы видим ID = 3 успешно извлекает данные.
-     *  К сожалению с ID = 20 метод уже не работает.
-     */
-    $ids = [3, 20];
-    $categoryProducts = $block->getProductCollectionByCategories($ids);
-    foreach ($categoryProducts as $product) {
-        echo $product->getName();
+    $ids = [38, 20, 11, 3, 9, 37];
+    foreach ($block->getProductCollectionById($ids) as $product)
+    {
+        echo $product->getName() . "</br>";
     }
     ?>
 </div>
