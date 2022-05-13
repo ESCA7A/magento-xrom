@@ -53,7 +53,15 @@
                 <label><span>Model</span> (required)</label>
             </div>
             <select name="model" id="model">
-                <?php //someone code ?>
+                <option value="<?php echo $category->getId();?>"><?php echo $category->getName(); ?></option>
+                <option>
+                    <script type="text/javascript">
+                        require(['jquery'], function($){
+                            $("#category").on('change', function (){
+                                var catID = $(this).val();
+                        alert(catID + " <-cat id and is work");
+                    </script>
+                </option>
             </select>
         </div>
         <div>
@@ -98,7 +106,7 @@
 </div>
 <div>
     <?php
-    $ids = [38, 20, 11, 3, 9, 37];
+    $ids = [11];
     foreach ($block->getProductCollectionById($ids) as $product)
     {
         echo $product->getName() . "</br>";

@@ -20,7 +20,8 @@ class Ajax extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-        $result = [['id' => '1', 'name' => 'pasha'], ['id' => '2', 'name' => 'nePasha']];
+//        $result = [['id' => '1', 'name' => 'pasha'], ['id' => '2', 'name' => 'nePasha']];
+        $result = "its the string";
 //        $this->initCategory();
 //        $this->currentCategory->getProductCollection()->addAttributeToSelect('*');
         return $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_JSON)->setData($result);

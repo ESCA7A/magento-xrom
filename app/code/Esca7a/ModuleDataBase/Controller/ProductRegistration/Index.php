@@ -22,7 +22,8 @@ class Index extends \Magento\Framework\App\Action\Action
     }
     public function execute()
     {
-
-        return $this->session->isLoggedIn() ? $this->_pageFactory->create() : $this->redirectGuest();
+        return $this->_pageFactory->create();
+        // when i user is loggin in
+        //return $this->session->isLoggedIn() ? $this->_pageFactory->create() : $this->redirectGuest();
     }
 }
