@@ -29,23 +29,41 @@
             </div>
             <select name="product_category" id="category">
                 <?php foreach ($block->getCategoryList() as $category):?>
-                <option value="<?php echo $category->getId();?>"><?php echo $category->getName(); ?></option>
+                    <option value="<?php echo $category->getId();?>">
+                        <?php
+                            echo "ID: " . $category->getId() . ", " . $category->getName();
+                        ?>
+                    </option>
                 <?php endforeach;?>
             </select>
             <script type="text/javascript">
                 require(['jquery'], function($){
                     $("#category").on('change', function (){
                         var catID = $(this).val();
-                        //alert(catID);
-                    $.ajax({
-                        type:"POST",
-                        url:"<?php echo $block->getUrl('moduledatabase/ProductRegistration/Ajax') ?>",
-                        data:{ajax:'1',category: catID},
-                        success: function (result){
-                            alert('result: ' + result + ' | its alert from success:function(var). ID category: ' + catID);
-                        }
+                        console.log(catID);
+                        $.ajax({
+                            type:"POST",
+                            url:"<?php echo $block->getUrl('moduledatabase/ProductRegistration/Ajax') ?>",
+                            data:{ajax:'1',category: catID},
+                            success: function (result){
+                                console.log(JSON.stringify(result) + ' :json | categoryId: ' + catID);
+
+                                var i = 0;
+                                jQuery("#model").empty();
+                                while(i < result.length) {
+                                    document.getElementById("model").innerHTML =
+                                        document.getElementById("model").innerHTML +
+                                        "<option value=" +
+                                        "'" + result[i]["id"] +
+                                        "'>" + result[i]["name"] +
+                                        "</option>";
+                                    i++;
+                                }
+
+                            }
+                        })
                     })
-                })});
+                });
             </script>
         </div>
         <div>
@@ -55,12 +73,7 @@
             <select name="model" id="model">
                 <option value="<?php echo $category->getId();?>"><?php echo $category->getName(); ?></option>
                 <option>
-                    <script type="text/javascript">
-                        require(['jquery'], function($){
-                            $("#category").on('change', function (){
-                                var catID = $(this).val();
-                        alert(catID + " <-cat id and is work");
-                    </script>
+
                 </option>
             </select>
         </div>
@@ -105,13 +118,7 @@
 
 </div>
 <div>
-    <?php
-    $ids = [11];
-    foreach ($block->getProductCollectionById($ids) as $product)
-    {
-        echo $product->getName() . "</br>";
-    }
-    ?>
+
 </div>
 </body>
 </html>

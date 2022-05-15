@@ -29,14 +29,14 @@ class DisplayForm extends \Magento\Framework\View\Element\Template
      * @param bool $toLoad
      */
 
-    public function getStoreCategories($sorted = true, $asCollection = true, $toLoad = true)
+    public function getStoreCategories($sorted = false, $asCollection = true, $toLoad = true)
     {
         return $this->_categoryHelper->getStoreCategories($sorted, $asCollection, $toLoad);
     }
 
     public function getCategoryList()
     {
-        return $categories = $this->getStoreCategories(false, false, true);
+        return $categories = $this->getStoreCategories(false, true, true);
     }
 
     public function getProductCollectionById($ids)
@@ -45,13 +45,5 @@ class DisplayForm extends \Magento\Framework\View\Element\Template
         $collection->addAttributeToSelect('*');
         $collection->addCategoriesFilter(['in' => $ids]);
         return $collection;
-
-//        $website_ids = [$ids];
-//        $collection = $this->_productCollectionFactory->create();
-//        $collection->addAttributeToSelect(['name']);
-//        $collection->addWebsiteFilter($website_ids);
-//        $collection->addCategoriesFilter(['in' => $ids]);
-//        return $collection;
     }
-
 }

@@ -5,32 +5,39 @@ namespace Esca7a\ModuleDataBase\Controller\ProductRegistration;
 class Ajax extends \Magento\Framework\App\Action\Action
 {
     protected $_pageFactory;
-    protected $categoryFactory;
-    protected $currentCategory;
+    protected $_productCollectionFactory;
+    protected $_categoryCollectionFactory;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $pageFactory,
-        \Magento\Catalog\Model\CategoryFactory $categoryFactory
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryCollectionFactory
     ) {
         $this->_pageFactory = $pageFactory;
-        $this->categoryFactory = $categoryFactory;
+        $this->_productCollectionFactory = $productCollectionFactory;
+        $this->_categoryCollectionFactory = $categoryCollectionFactory;
         parent::__construct($context);
     }
 
     public function execute()
     {
-//        $result = [['id' => '1', 'name' => 'pasha'], ['id' => '2', 'name' => 'nePasha']];
-        $result = "its the string";
-//        $this->initCategory();
-//        $this->currentCategory->getProductCollection()->addAttributeToSelect('*');
-        return $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_JSON)->setData($result);
-    }
+        $categoryId = $this->getRequest()->getParam('category');
 
-    protected function initCategory()
-    {
-        $categoryID = $this->getRequest()->getParam('category');
-        $category = $this->categoryFactory->create()->load($categoryID);
-        $this->categoryFactory = $category;
+        $result = [];
+        if ($categoryId) {
+            $collection = $this->_productCollectionFactory->create()->addCategoryIds($categoryId);
+            $collection->addAttributeToSelect('*')->addCategoriesFilter(['in' => $categoryId]);
+
+            foreach ($collection as $item) {
+                $ProductName = $item->getName();
+                $result[] = ["id" => "$categoryId", "name" => "$ProductName"];
+            }
+        }
+        if (empty($result)) {
+            $result[] = 'result EMPTY';
+        }
+
+        return $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_JSON)->setData($result);
     }
 }
