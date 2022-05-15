@@ -22,7 +22,7 @@
     }
 </style>
 <div>
-    <form action="<?php echo $block->getUrl('moduledatabase/ProductRegistration/Ajax'); ?>" method="post">
+    <form action="<?php echo $block->getUrl('moduledatabase/DBtest/Index'); ?>" method="post">
         <div>
             <div>
                 <label><span>Product category</span> (required)</label>
@@ -46,20 +46,17 @@
                             url:"<?php echo $block->getUrl('moduledatabase/ProductRegistration/Ajax') ?>",
                             data:{ajax:'1',category: catID},
                             success: function (result){
-                                console.log(JSON.stringify(result) + ' :json | categoryId: ' + catID);
-
+                                //console.log(JSON.stringify(result) + ' :json | categoryId: ' + catID);
                                 var i = 0;
                                 jQuery("#model").empty();
                                 while(i < result.length) {
                                     document.getElementById("model").innerHTML =
                                         document.getElementById("model").innerHTML +
-                                        "<option value=" +
-                                        "'" + result[i]["id"] +
-                                        "'>" + result[i]["name"] +
+                                        "<option value=" + "'" + result[i]["id"] + "'>"
+                                        + result[i]["name"] +
                                         "</option>";
                                     i++;
                                 }
-
                             }
                         })
                     })
