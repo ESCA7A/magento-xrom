@@ -1,6 +1,6 @@
 <?php
 
-namespace Esca7a\ModuleDataBase\Controller\ProductRegistration;
+namespace Esca7a\ModuleDataBase\Controller\CustomerFeedbackForm;
 
 class Ajax extends \Magento\Framework\App\Action\Action
 {
@@ -38,9 +38,6 @@ class Ajax extends \Magento\Framework\App\Action\Action
             $result[] = 'result EMPTY';
         }
 
-        return
-            $this->resultFactory->create(
-                \Magento\Framework\Controller\ResultFactory::TYPE_JSON
-            )->setData($result);
+        return $this->resultFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_JSON)->setData($result);
     }
 }

@@ -22,14 +22,14 @@
     }
 </style>
 <div>
-    <form action="<?php echo $block->getUrl('moduledatabase/DBtest/Index'); ?>" method="post">
+    <form action="<?php echo $block->getUrl('moduledatabase/dbtest/index') ?>" method="post">
         <div>
             <div>
                 <label><span>Product category</span> (required)</label>
             </div>
             <select name="product_category" id="category">
                 <?php foreach ($block->getCategoryList() as $category):?>
-                    <option value="<?php echo $category->getId();?>">
+                    <option value="<?php echo $category->getId()?>">
                         <?php
                             echo "ID: " . $category->getId() . ", " . $category->getName();
                         ?>
@@ -43,16 +43,15 @@
                         console.log(catID);
                         $.ajax({
                             type:"POST",
-                            url:"<?php echo $block->getUrl('moduledatabase/ProductRegistration/Ajax') ?>",
+                            url:"<?php echo $block->getUrl('moduledatabase/customerfeedbackform/ajax') ?>",
                             data:{ajax:'1',category: catID},
                             success: function (result){
-                                //console.log(JSON.stringify(result) + ' :json | categoryId: ' + catID);
                                 var i = 0;
                                 jQuery("#model").empty();
                                 while(i < result.length) {
                                     document.getElementById("model").innerHTML =
                                         document.getElementById("model").innerHTML +
-                                        "<option value=" + "'" + result[i]["id"] + "'>"
+                                        "<option value=" + "\"" + result[i]["id"] + result[i]["name"] + "\">"
                                         + result[i]["name"] +
                                         "</option>";
                                     i++;
@@ -68,9 +67,7 @@
                 <label><span>Model</span> (required)</label>
             </div>
             <select name="model" id="model">
-                <option value="<?php echo $category->getId();?>"><?php echo $category->getName(); ?></option>
-                <option>
-
+                <option value="select your item">
                 </option>
             </select>
         </div>
@@ -79,7 +76,7 @@
                 <label><span>Serial Number</span> (required)</label>
             </div>
             <div>
-                <input placeholder="serial number" type="text">
+                <input placeholder="serial number" type="text" name="serialNumData">
             </div>
         </div>
         <div>
@@ -87,7 +84,7 @@
                 <label><span>E-mail</span> (required)</label>
             </div>
             <div>
-                <input type="email" placeholder="4. Текстовый инпут для емейла.">
+                <input type="email" placeholder="4. Текстовый инпут для емейла." name="emailData">
             </div>
         </div>
         <div>
@@ -95,15 +92,16 @@
                 <label><span>Phone</span> (required)</label>
             </div>
             <div>
-                <input type="number" placeholder="5. Текстовый инпут для телефона.">
+                <input type="number" placeholder="5. Текстовый инпут для телефона." name="phoneData">
             </div>
         </div>
         <div>
             <div>
                 <label><span>Message about product</span> (required)</label>
             </div>
+
             <div>
-                <textarea placeholder="6. Текстовая область для текста."></textarea>
+                <textarea placeholder="6. Текстовая область для текста." name="userFeedbackData"></textarea>
             </div>
         </div>
         <div>

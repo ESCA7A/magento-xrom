@@ -1,6 +1,6 @@
 <?php
 
-namespace Esca7a\ModuleDataBase\Controller\ProductRegistration;
+namespace Esca7a\ModuleDataBase\Controller\CustomerFeedbackForm;
 
 class Index extends \Magento\Framework\App\Action\Action
 {

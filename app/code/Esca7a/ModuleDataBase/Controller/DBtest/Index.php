@@ -5,16 +5,18 @@ namespace Esca7a\ModuleDataBase\Controller\DBtest;
 use Esca7a\ModuleDataBase\Model\DataFactory as DataFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\Request\Http as request;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
     protected $_dataFactory;
     protected $resultRedirect;
+    protected $_request;
     public function __construct(
         Context $context,
         DataFactory $dataFactory,
         ResultFactory $result,
-        \Magento\Framework\App\Request\Http $request
+        request $request
     ) {
         parent::__construct($context);
         $this->_dataFactory = $dataFactory;
@@ -23,30 +25,46 @@ class Index extends \Magento\Framework\App\Action\Action
     }
     public function execute()
     {
+        /**
+         * get Post Params
+         */
+        $somePost = $this->_request->getPost(); // $somePost = get Post Data;
+        $modelName = $somePost->get('model');
+        $serialNumber = $somePost->get('serialNumData');
+        $email = $somePost->get('emailData');
+        $phone = $somePost->get('phoneData');
+        $userFeedback = $somePost->get('userFeedbackData');
 
-        //$somePost = $this->_request->getPost();
-
+        /**
+         * create object manager to get customer Id
+         */
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $customerSession = $objectManager->create("Magento\Customer\Model\Session");
         $customerIdObjectManager = $customerSession->getCustomerId();
 
+        /**
+         * create redicrect to feedback of customer page
+         */
         $resultRedirect = $this->resultRedirectFactory->create();
-        $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+        $resultRedirect = $resultRedirect->setPath('moduledatabase/customerallfeedback/*');
 
+        /**
+         * write data to database
+         */
         $model = $this->_dataFactory->create();
         $model->addData([
             "customer_id" => $customerIdObjectManager,
-            "product_id" => "some product name or id",
-////            "serial_number" => 229,
-////            "email" => 'pasha.asd@gmail.com',
-////            "phone_number" => 2323322333,
-////            "date" => "02.02.1997",
-            "user_request" => "its product very nice"
+            "product_id" => $modelName,
+            "serial_number" => $serialNumber,
+            "email" => $email,
+            "phone_number" => $phone,
+            "date" => date('Y-m-d H:i:s'),
+            "user_request" => $userFeedback
         ]);
         $saveData = $model->save();
         if ($saveData) {
             $this->messageManager->addSuccess(__('Thank you for feedback!'));
         }
-        return $resultRedirect->setPath('home');
+        return $resultRedirect;
     }
 }

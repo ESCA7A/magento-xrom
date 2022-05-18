@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <referenceContainer name="content">
-        <block class="Esca7a\ModuleDataBase\Block\DisplayForm" name="moduledatabase_dbtest_index" template="Esca7a_ModuleDataBase::customer-feedback-form.phtml" />
+        <block class="Esca7a\ModuleDataBase\Block\DisplayForm" name="moduledatabase_customerallfeedback_index" template="Esca7a_ModuleDataBase::customer-all-feedback.phtml" />
     </referenceContainer>
 </page>

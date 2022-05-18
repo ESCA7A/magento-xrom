@@ -2,7 +2,8 @@
 
 namespace Esca7a\ModuleDataBase\Model\ResourceModel;
 
-\Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+
 class Collection extends AbstractCollection
 {
     public function _construct()

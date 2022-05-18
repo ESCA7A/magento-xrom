@@ -1,0 +1,40 @@
+<?php //All Customer Feedback Page ;
+/**
+ * @var ModuleDataBase\Block\DisplayForm $block;
+ * create connect fields to /ModuleDataBase//index;
+ * here we use *instance of classes @block file
+ */
+?>
+
+<html>
+
+<style>
+    table {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        text-align: left;
+        border-collapse: separate;
+        border-spacing: 5px;
+        background: #ECE9E0;
+        color: #656665;
+        border: 16px solid #ECE9E0;
+        border-radius: 20px;
+    }
+    th {
+        font-size: 18px;
+        padding: 10px;
+    }
+    td {
+        background: #F5D7BF;
+        padding: 10px;
+    }
+</style>
+
+<form action="<?php $block->getUrl('moduledatabase/DBtest/Index') ?>" method="post">
+    <div>
+        <table>
+            <th></th><th></th><th></th>
+            <td></td><td></td><td></td>
+        </table>
+    </div>
+</form>
+</html>
