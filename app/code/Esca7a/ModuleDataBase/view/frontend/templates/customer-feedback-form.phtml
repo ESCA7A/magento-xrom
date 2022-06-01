@@ -1,0 +1,121 @@
+<?php
+/**
+ * @var DisplayForm $block;
+ * create connect fields to /ModuleDataBase/display/index;
+ * here we use *instance of classes @block file
+ * @var \Magento\Framework\View\Element\AbstractBlock::getUrl $block->geturl();
+ */
+?>
+<html>
+<body>
+<style>
+    input[type="text"] {
+        font-family: inherit; /* 1 */
+        font-size: inherit; /* 1 */
+        line-height: inherit; /* 1 */
+        margin: 0; /* 2 */
+    }
+    .text-field__input:disabled,
+    .text-field__input[readonly] {
+        background-color: #f5f5f5;
+        opacity: 1;
+    }
+</style>
+<div>
+    <form action="<?php echo $block->getUrl('moduledatabase/dbtest/index') ?>" method="post">
+        <div>
+            <div>
+                <label><span>Product category</span> (required)</label>
+            </div>
+            <select name="product_category" id="category">
+                <?php foreach ($block->getCategoryList() as $category):?>
+                    <option value="<?php echo $category->getId()?>">
+                        <?php
+                            echo "ID: " . $category->getId() . ", " . $category->getName();
+                        ?>
+                    </option>
+                <?php endforeach;?>
+            </select>
+            <script type="text/javascript">
+                require(['jquery'], function($){
+                    $("#category").on('change', function (){
+                        var catID = $(this).val();
+                        console.log(catID);
+                        $.ajax({
+                            type:"POST",
+                            url:"<?php echo $block->getUrl('moduledatabase/customerfeedbackform/ajax') ?>",
+                            data:{ajax:'1',category: catID},
+                            success: function (result){
+                                var i = 0;
+                                jQuery("#model").empty();
+                                while(i < result.length) {
+                                    document.getElementById("model").innerHTML =
+                                        document.getElementById("model").innerHTML +
+                                        "<option value=" + "\"" + result[i]["id"] + result[i]["name"] + "\">"
+                                        + result[i]["name"] +
+                                        "</option>";
+                                    i++;
+                                }
+                            }
+                        })
+                    })
+                });
+            </script>
+        </div>
+        <div>
+            <div>
+                <label><span>Model</span> (required)</label>
+            </div>
+            <select name="model" id="model">
+                <option value="select your item">
+                </option>
+            </select>
+        </div>
+        <div>
+            <div>
+                <label><span>Serial Number</span> (required)</label>
+            </div>
+            <div>
+                <input placeholder="serial number" type="text" name="serialNumData">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label><span>E-mail</span> (required)</label>
+            </div>
+            <div>
+                <input type="email" placeholder="4. Текстовый инпут для емейла." name="emailData">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label><span>Phone</span> (required)</label>
+            </div>
+            <div>
+                <input type="number" placeholder="5. Текстовый инпут для телефона." name="phoneData">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label><span>Message about product</span> (required)</label>
+            </div>
+
+            <div>
+                <textarea placeholder="6. Текстовая область для текста." name="userFeedbackData"></textarea>
+            </div>
+        </div>
+        <div>
+            <button name="submit" type="submit">accept</button>
+        </div>
+    </form>
+</div>
+<div>
+
+</div>
+<div>
+
+</div>
+</body>
+</html>
+
+

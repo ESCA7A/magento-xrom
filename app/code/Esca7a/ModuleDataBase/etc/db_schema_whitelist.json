@@ -1,0 +1,17 @@
+{
+    "esca7a_task5": {
+        "column": {
+            "application_id": true,
+            "customer_id": true,
+            "product_name": true,
+            "serial_number": true,
+            "email": true,
+            "phone_number": true,
+            "user_request": true,
+            "date": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
