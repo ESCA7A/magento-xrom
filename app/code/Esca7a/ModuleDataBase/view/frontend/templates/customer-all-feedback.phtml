@@ -100,17 +100,17 @@
     }
 </style>
 <script type="text/javascript">
-    var properties = [
+    const properties = [
         'requestNum',
         'itemName',
         'serialNum',
         'detail',
-        'reqiestDate',
+        'requestDate',
     ];
 
     $.each( properties, function( i, val ) {
 
-        var orderClass = '';
+        let orderClass = '';
 
         $("#" + val).click(function(e){
             e.preventDefault();
@@ -126,17 +126,17 @@
                 orderClass = 'desc';
             }
 
-            var parent = $(this).closest('.header__item');
-            var index = $(".header__item").index(parent);
-            var $table = $('.table-content');
-            var rows = $table.find('.table-row').get();
-            var isSelected = $(this).hasClass('filter__link--active');
-            var isNumber = $(this).hasClass('filter__link--number');
+            let parent = $(this).closest('.header__item');
+            let index = $(".header__item").index(parent);
+            let $table = $('.table-content');
+            let rows = $table.find('.table-row').get();
+            let isSelected = $(this).hasClass('filter__link--active');
+            let isNumber = $(this).hasClass('filter__link--number');
 
             rows.sort(function(a, b){
 
-                var x = $(a).find('.table-data').eq(index).text();
-                var y = $(b).find('.table-data').eq(index).text();
+                let x = $(a).find('.table-data').eq(index).text();
+                let y = $(b).find('.table-data').eq(index).text();
 
                 if(isNumber == true) {
 
@@ -188,7 +188,7 @@
                     <a id="detail" class="filter__link filter__link--number" href="#">Detail</a>
                 </div>
                 <div class="header__item">
-                    <a id="reqiestDate" class="filter__link filter__link--number" href="#">Request date</a>
+                    <a id="requestDate" class="filter__link filter__link--number" href="#">Request date</a>
                 </div>
             </div>
             <?php

@@ -39,14 +39,14 @@
             <script type="text/javascript">
                 require(['jquery'], function($){
                     $("#category").on('change', function (){
-                        var catID = $(this).val();
+                        let catID = $(this).val();
                         console.log(catID);
                         $.ajax({
                             type:"POST",
                             url:"<?php echo $block->getUrl('moduledatabase/customerfeedbackform/ajax') ?>",
                             data:{ajax:'1',category: catID},
                             success: function (result){
-                                var i = 0;
+                                let i = 0;
                                 jQuery("#model").empty();
                                 while(i < result.length) {
                                     document.getElementById("model").innerHTML =
