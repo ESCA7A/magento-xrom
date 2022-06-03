@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="esca7a_task5" resource="default" engine="innodb" comment="Esca7a TABLE FOR TASK 5">
-        <column xsi:type="int" name="application_id" padding="6" unsigned="false" nullable="false" identity="true" comment="application ID of users"/>
-        <column xsi:type="int" name="customer_id" padding="6" unsigned="false" nullable="false" identity="false" comment="user ID"/>
+    <table name="esca7a_task5" resource="default" engine="innodb" comment="Feedback Table">
+        <column xsi:type="int" name="application_id" padding="6" unsigned="false" nullable="false" identity="true" comment="application id"/>
+        <column xsi:type="int" name="customer_id" padding="6" unsigned="false" nullable="false" identity="false" comment="user id"/>
         <column xsi:type="text" name="product_name" nullable="false" comment="product name"/>
         <column xsi:type="varchar" name="serial_number" nullable="false" length="25" comment="serial number"/>
         <column xsi:type="varchar" name="email" nullable="false" length="99" comment="Email"/>
         <column xsi:type="varchar" name="phone_number" nullable="false" length="64" comment="phone number"/>
-        <column xsi:type="text" name="user_request" nullable="false" comment="request from user"/>
-        <column xsi:type="datetime" name="date" on_update="false" nullable="false" comment="date of creation"/>
+        <column xsi:type="text" name="user_request" nullable="false" comment="user request"/>
+        <column xsi:type="datetime" name="date" on_update="false" nullable="false" comment="created at"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="application_id" />
         </constraint>
