@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Esca7a_ModuleDataBase::data" title="Feedback Editor" module="Esca7a_ModuleDataBase" sortOrder="75" resource="Esca7a_ModuleDataBase::data" action="feedbackeditor/feedbacks/helloworld"/>
-        <add id="Esca7a_ModuleDataBase::home" title="Category Listing" module="Esca7a_ModuleDataBase" sortOrder="1000" parent="Magento_Catalog::catalog_categories" resource="Magento_Catalog::categories" action="feedbackeditor/feedbacks/helloworld"/>
-    </menu>
-</config>

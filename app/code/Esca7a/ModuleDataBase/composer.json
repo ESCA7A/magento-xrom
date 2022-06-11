@@ -1,0 +1,20 @@
+{
+    "name": "esca7a/ModuleDataBase",
+    "type": "magento2-module",
+    "description": "create Module Data Base Task 6 [TEST XROM-1-ST-WEEK]",
+    "homepage": "https://github.com/ESCA7A/magento-xrom",
+    "license": "XROM-GROUP",
+    "authors": [
+        {
+            "name": "Pavel <XROM> Tankov",
+            "email": "pasha.esca1a@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require-dev": {
+        "php": ">=7.4",
+        "magento/magento-composer-installer": "*",
+        "squizlabs/PHP_CodeSniffer": "3.2.*"
+    }
+
+}

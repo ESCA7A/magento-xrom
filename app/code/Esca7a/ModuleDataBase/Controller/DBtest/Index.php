@@ -34,7 +34,7 @@ class Index extends \Magento\Framework\App\Action\Action
         $serialNumber = $somePost->get('serialNumData');
         $email = $somePost->get('emailData');
         $phone = $somePost->get('phoneData');
-        $userFeedback = $somePost->get('created_at');
+        $userFeedback = $somePost->get('userFeedbackData');
 
         /**
          * create object manager to get customer id
@@ -60,7 +60,7 @@ class Index extends \Magento\Framework\App\Action\Action
             "serial_number" => $serialNumber,
             "email" => $email,
             "phone_number" => $phone,
-            "created_at" => date('Y-m-d H:i:s'),
+            "date" => date('Y-m-d H:i:s'),
             "user_request" => $userFeedback
         ]);
         $saveData = $model->save();
