@@ -25,10 +25,8 @@ class DisplayForm extends \Magento\Framework\View\Element\Template
     /**
      * Retrieve current store level 2 category
      *
-     * @param bool|string $sorted
-     * (if true display collection sorted as name otherwise sorted as based on id asc)
-     * @param bool $asCollection
-     * (if true display all category otherwise display second level category menu
+     * @param bool|string $sorted (if true display collection sorted as name otherwise sorted as based on id asc)
+     * @param bool $asCollection (if true display all category otherwise display second level category menu
      * visible category for current store)
      * @param bool $toLoad
      * @return array|Collection

@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Esca7a_MageGrid::helloworld" title="feedbacks" module="Esca7a_MageGrid" sortOrder="51" resource="Esca7a_MageGrid::helloworld" action="magegrid/post/index"/>
-    </menu>
-</config>

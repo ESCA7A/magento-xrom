@@ -1,0 +1,19 @@
+{
+    "name": "esca7a/moduletask4", 
+    "type": "magento2-module",
+    "description": "create module Task 4 [TEST XROM-1-ST-WEEK]",
+    "homepage": "https://github.com/ESCA7A/XROM-1-ST-WEEK",
+    "license": "XROM-GROUP",
+    "authors": [
+        {
+            "name": "Pavel <XROM> Tankov",
+            "email": "pasha.esca1a@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.28",
+        "magento/magento-composer-installer": "*"
+    }
+
+}
