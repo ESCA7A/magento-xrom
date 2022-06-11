@@ -201,7 +201,7 @@
                     'product_name' => $item->getData('product_name'),
                     'serial_number' => $item->getData('serial_number'),
                     'user_request' => $item->getData('user_request'),
-                    'date' => $item->getData('date')
+                    'created_at' => $item->getData('created_at')
                 ]; ?>
             <div class="table-content">
                 <?php if (in_array($customerId, $data)): ?>
@@ -219,7 +219,7 @@
                         <?php echo $data['user_request']?>
                     </div>
                     <div class="table-data" style="border-right-style: solid; border-left-style: solid">
-                        <?php echo $data['date']?>
+                        <?php echo $data['created_at']?>
                     </div>
                 </div>
             </div>
